@@ -1,0 +1,11 @@
+*.asv
+*.class
+*.iml
+.idea
+*.psm
+toDo.txt
+
+
+# Package Files #
+*.war
+*.ear
