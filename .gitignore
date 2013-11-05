@@ -5,6 +5,7 @@
 *.psm
 toDo.txt
 
+target
 
 # Package Files #
 *.war
