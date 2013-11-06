@@ -27,7 +27,8 @@ public interface InputData {
 public interface TimeSeries
 {
     /**
-     * @return Map of any values at certain time stamps.
+     * @return Map of values at certain time stamps.
+     *
      * Time stamp are Java time stamps in ms.
      */
     SortedMap<Long, Double> points();
@@ -35,36 +36,10 @@ public interface TimeSeries
 
 ```
 
-We provide such a tool for hdf files
-```java
-public final class hdfInputData implements InputData {
-
-    private final DataReader reader;
-
-    public hdfInputData(File file)
-    {
-        reader = new DataReader(file);
-    }
-
-    @Override
-    public TimeSeries timeSeries(String name) {
-        try {
-            return reader.readSeries(name);
-        } catch (HDF5JavaException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public Set<String> names() {
-        return reader.readNames();
-    }
-}
-```
+We provide such implementations for hdf and csv files
 
 ## Matlab support
-Matlab is quite terrible with dates. We provide some help in the Matlab package.
+Matlab is dubious with dates. We provide some help in the Matlab package.
 
 ## Matrices
 Time series data are the columns of a matrix
