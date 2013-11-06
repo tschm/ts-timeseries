@@ -1,7 +1,5 @@
-# ts-timeseries
-
-Tools to work with time series data in Java.
-
+## Motivation
+We provide tools to work with time series data in Java.
 
 ## Data import from external sources
 Program tools against this interface to load data into the ts-cta framework:
@@ -115,10 +113,11 @@ public interface Matrix {
 ```
 
 ## Operators
-We provide various functions to map and analyse time series data and matrices.
+We provide various functions to map and analyze time series data and matrices.
 
 ## Availability
 This package is available in the Maven repository of the author.
 
 
-
+   
+    
