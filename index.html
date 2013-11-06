@@ -34,7 +34,7 @@
         <h2>
 <a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h2>
 
-<p>Tools to work with time series data in Java.</p>
+<p>We provide tools to work with time series data in Java.</p>
 
 <h2>
 <a name="data-import-from-external-sources" class="anchor" href="#data-import-from-external-sources"><span class="octicon octicon-link"></span></a>Data import from external sources</h2>
@@ -61,7 +61,8 @@
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TimeSeries</span>
 <span class="o">{</span>
     <span class="cm">/**</span>
-<span class="cm">     * @return Map of any values at certain time stamps.</span>
+<span class="cm">     * @return Map of values at certain time stamps.</span>
+<span class="cm">     *</span>
 <span class="cm">     * Time stamp are Java time stamps in ms.</span>
 <span class="cm">     */</span>
     <span class="n">SortedMap</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="n">points</span><span class="o">();</span>
@@ -69,38 +70,12 @@
 
 </pre></div>
 
-<p>We provide such a tool for hdf files</p>
-
-<div class="highlight highlight-java"><pre><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">hdfInputData</span> <span class="kd">implements</span> <span class="n">InputData</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="n">DataReader</span> <span class="n">reader</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">hdfInputData</span><span class="o">(</span><span class="n">File</span> <span class="n">file</span><span class="o">)</span>
-    <span class="o">{</span>
-        <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataReader</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">TimeSeries</span> <span class="nf">timeSeries</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">reader</span><span class="o">.</span><span class="na">readSeries</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">HDF5JavaException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">names</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">reader</span><span class="o">.</span><span class="na">readNames</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<p>We provide such implementations for hdf and csv files</p>
 
 <h2>
 <a name="matlab-support" class="anchor" href="#matlab-support"><span class="octicon octicon-link"></span></a>Matlab support</h2>
 
-<p>Matlab is quite terrible with dates. We provide some help in the Matlab package.</p>
+<p>Matlab is dubious with dates. We provide some help in the Matlab package.</p>
 
 <h2>
 <a name="matrices" class="anchor" href="#matrices"><span class="octicon octicon-link"></span></a>Matrices</h2>
@@ -179,7 +154,7 @@
 <h2>
 <a name="operators" class="anchor" href="#operators"><span class="octicon octicon-link"></span></a>Operators</h2>
 
-<p>We provide various functions to map and analyse time series data and matrices.</p>
+<p>We provide various functions to map and analyze time series data and matrices.</p>
 
 <h2>
 <a name="availability" class="anchor" href="#availability"><span class="octicon octicon-link"></span></a>Availability</h2>
