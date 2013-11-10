@@ -1,7 +1,5 @@
-# ts-timeseries
-
-Tools to work with time series data in Java.
-
+## Motivation
+We provide tools to work with time series data in Java.
 
 ## Data import from external sources
 Program tools against this interface to load data into the ts-cta framework:
@@ -27,7 +25,8 @@ public interface InputData {
 public interface TimeSeries
 {
     /**
-     * @return Map of any values at certain time stamps.
+     * @return Map of values at certain time stamps.
+     *
      * Time stamp are Java time stamps in ms.
      */
     SortedMap<Long, Double> points();
@@ -35,36 +34,10 @@ public interface TimeSeries
 
 ```
 
-We provide such a tool for hdf files
-```java
-public final class hdfInputData implements InputData {
-
-    private final DataReader reader;
-
-    public hdfInputData(File file)
-    {
-        reader = new DataReader(file);
-    }
-
-    @Override
-    public TimeSeries timeSeries(String name) {
-        try {
-            return reader.readSeries(name);
-        } catch (HDF5JavaException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public Set<String> names() {
-        return reader.readNames();
-    }
-}
-```
+We provide such implementations for hdf and csv files
 
 ## Matlab support
-Matlab is quite terrible with dates. We provide some help in the Matlab package.
+Matlab is dubious with dates. We provide some help in the Matlab package.
 
 ## Matrices
 Time series data are the columns of a matrix
@@ -140,10 +113,11 @@ public interface Matrix {
 ```
 
 ## Operators
-We provide various functions to map and analyse time series data and matrices.
+We provide various functions to map and analyze time series data and matrices.
 
 ## Availability
 This package is available in the Maven repository of the author.
 
 
-
+   
+    
