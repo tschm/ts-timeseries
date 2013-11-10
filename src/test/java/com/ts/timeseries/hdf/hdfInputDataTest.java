@@ -1,6 +1,8 @@
-package com.ts.timeseries.data;
+package com.ts.timeseries.hdf;
 
-import com.ts.timeseries.hdf.hdfInputData;
+import com.ts.timeseries.data.InputData;
+import com.ts.timeseries.data.TimeSeries;
+import com.ts.timeseries.hdf.HdfInputData;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,9 +13,9 @@ public class hdfInputDataTest {
 
     @Test
     public void testTimeSeries() throws Exception {
-        InputData data = new hdfInputData(new File(testDir, "matrix.h5"));
+        InputData data = new HdfInputData(new File(testDir, "matrix.h5"), "data");
         Assert.assertEquals(data.names().size(), 57);
-        TimeSeries ts = data.timeSeries("data/FTSE-price adjusted");
+        TimeSeries ts = data.timeSeries("FTSE-price adjusted");
         Assert.assertEquals(ts.points().size(), 2263);
     }
 }

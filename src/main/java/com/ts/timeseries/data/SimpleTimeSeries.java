@@ -47,9 +47,8 @@ public final class SimpleTimeSeries implements TimeSeries {
 
         SimpleTimeSeries that = (SimpleTimeSeries) o;
 
-        if (series != null ? !series.equals(that.series) : that.series != null) return false;
+        return !(series != null ? !series.equals(that.series) : that.series != null);
 
-        return true;
     }
 
     @Override
