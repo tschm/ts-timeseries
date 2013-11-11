@@ -14,7 +14,7 @@ class DataReader {
 
     /**
      * construct a reader based on a file
-     * @param file file to read from
+     * @param file file to readColumns from
      */
     public DataReader(File file)
     {
@@ -63,7 +63,7 @@ class DataReader {
     }
 
     /**
-     * read a series
+     * readColumns a series
      *
      * @param name name of the series within this group
      * @return TimeSeries (or null)

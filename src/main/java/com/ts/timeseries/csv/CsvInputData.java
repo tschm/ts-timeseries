@@ -23,10 +23,9 @@ public final class CsvInputData implements InputData {
     public static final String DATA_CSV = "data.series.csv";
 
     public CsvInputData(File file, String DateFormat) throws IOException, ParseException {
-        columns = Csv.read(file);
+        columns = Csv.readColumns(file);
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern(DateFormat);
-        //columns = reader.columns();
 
         List<String> dates = columns.get("Date");
 

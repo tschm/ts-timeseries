@@ -1,34 +1,43 @@
 package com.ts.timeseries.csv;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CsvTest {
     @Test
-    public void testWrite() throws Exception {
-        File file = new File("src//test//resources//data//testCsv1.csv");
-        Map<String, List<String>> x = Csv.read(file);
+    public void testColumns() throws Exception {
+        File tmp = File.createTempFile("test",".csv");
 
-        File tmp = File.createTempFile("testcsvWriter",".csv");
+        Map<String, List<String>> data = new HashMap<String, List<String>>();
+        data.put("A",ImmutableList.of("1","2","3"));
+        data.put("B",ImmutableList.of("4","5","6"));
 
-        Csv.write(x, tmp);
-        Map<String, List<String>> y = Csv.read(tmp);
-        Assert.assertEquals(x,y);
+        Csv.writeColumns(data, tmp);
 
+        Assert.assertEquals(Csv.readColumns(tmp), data);
         tmp.delete();
     }
 
     @Test
-    public void testRead() throws Exception {
-        File file = new File("src//test//resources//data//testCsv1.csv");
-        Map<String, List<String>> x = Csv.read(file);
-        Assert.assertEquals(x.keySet(), ImmutableSet.of("A", "B", "C"));
-        Assert.assertEquals(x.get("B"), ImmutableList.of("2", "5"));
+    public void testRows() throws Exception {
+        File tmp = File.createTempFile("test",".csv");
+
+        List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+        data.add(ImmutableMap.of("A","1","B","2","C","3"));
+        data.add(ImmutableMap.of("A","4","B","5","C","6"));
+
+        Csv.writeRows(data, tmp);
+
+        Assert.assertEquals(Csv.readRows(tmp), data);
+        tmp.delete();
     }
 }

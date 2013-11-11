@@ -4,7 +4,7 @@ import java.util.Set;
 
 public interface InputData {
     /**
-     * read time series
+     * readColumns time series
      *
      * @param name name of the time series
      * @return the time series
@@ -12,7 +12,7 @@ public interface InputData {
     TimeSeries timeSeries(String name);
 
     /**
-     * read set of names
+     * readColumns set of names
      *
      * @return Set of all feasible names
      */
