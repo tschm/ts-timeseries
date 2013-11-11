@@ -10,7 +10,8 @@ public final class Csv {
         throw new AssertionError();
     }
 
-    public static List<List<String>> read(File file) throws IOException {
+    public static List<List<String>> read(File file) throws IOException
+    {
         final BufferedReader reader = new BufferedReader(new FileReader(file));
         try
         {
@@ -70,7 +71,8 @@ public final class Csv {
         return xx;
     }
 
-    public static void write(List<List<String>> data, File file) throws IOException {
+    public static void write(List<List<String>> data, File file) throws IOException
+    {
         final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         try
         {
