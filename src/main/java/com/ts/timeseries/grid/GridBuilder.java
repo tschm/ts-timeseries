@@ -1,7 +1,6 @@
 package com.ts.timeseries.grid;
 
 
-import com.google.common.collect.ImmutableBiMap;
 import com.ts.timeseries.data.SimpleTimeSeries;
 import com.ts.timeseries.data.TimeSeries;
 import org.joda.time.DateTime;
@@ -10,7 +9,6 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.concurrent.TimeUnit;
 
 public final class GridBuilder {
 
@@ -60,47 +58,5 @@ public final class GridBuilder {
         return new SimpleTimeSeries(data);
     }
 
-    static final class Duration {
-        @SuppressWarnings({"WeakerAccess"})
-        private static final ImmutableBiMap<String, TimeUnit> identifiers
-                = ImmutableBiMap.of(
-                "ms", TimeUnit.MILLISECONDS
-                , "s", TimeUnit.SECONDS
-                , "min", TimeUnit.MINUTES
-                , "h", TimeUnit.HOURS
-                , "d", TimeUnit.DAYS
-        );
-
-        private final TimeUnit timeUnit;
-        private final long value;
-
-        Duration(String serialized) {
-            TimeUnit unit = null;
-            long val = 0;
-            for (String identifier : identifiers.keySet()) {
-                if (serialized.endsWith(identifier)) {
-                    unit = identifiers.get(identifier);
-                    val = Long.valueOf(serialized.substring(0, serialized.length() - identifier.length()));
-                    break;
-                }
-            }
-
-            if (unit == null) {
-                throw new IllegalArgumentException("Wrong format, should be number + any of " + identifiers.keySet());
-            }
-
-            timeUnit = unit;
-            value = val;
-        }
-
-        /**
-         * Duration in Milliseconds
-         *
-         * @return Length of Duration in Milliseconds
-         */
-        long getDurationInMs() {
-            return timeUnit.toMillis(value);
-        }
-    }
 }
 

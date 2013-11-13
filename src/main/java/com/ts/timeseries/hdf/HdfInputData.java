@@ -14,6 +14,8 @@ public final class HdfInputData implements InputData {
     private final DataReader reader;
 
     public static final String DATA_HDF = "data.series.hdf";
+    public static final String DATA_HDF_GROUP = "data.series.hdf.group";
+
     private final String group;
 
     public HdfInputData(File file, String group)
