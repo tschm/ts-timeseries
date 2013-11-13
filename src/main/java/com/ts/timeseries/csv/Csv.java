@@ -20,7 +20,7 @@ public final class Csv {
             String thisLine;
             while ((thisLine = reader.readLine()) != null)
             {
-                values.add(new ArrayList<String>(Arrays.asList(thisLine.split(","))));
+                values.add(new ArrayList<>(Arrays.asList(thisLine.split(","))));
             }
             return values;
         }
@@ -73,17 +73,10 @@ public final class Csv {
 
     public static void write(List<List<String>> data, File file) throws IOException
     {
-        final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        try
-        {
-            for (List<String> x : data)
-            {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (List<String> x : data) {
                 writeRow(writer, x);
             }
-        }
-        finally
-        {
-            writer.close();
         }
     }
 
@@ -120,12 +113,12 @@ public final class Csv {
 
         x.add(keys);
 
-        for (int row = 0; row < data.size(); ++row)
+        for (Map<String, String> aData : data)
         {
-            List<String> w = new ArrayList<String>();
+            List<String> w = new ArrayList<>();
 
             for (String key : keys)
-                w.add(data.get(row).get(key));
+                w.add(aData.get(key));
 
             x.add(w);
         }

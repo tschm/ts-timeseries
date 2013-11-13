@@ -2,7 +2,7 @@ package com.ts.timeseries.csv;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
+import com.ts.timeseries.unit.LangAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,6 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 public class CsvTest {
+
+    @Test
+    public void testConstructor() throws Exception {
+        LangAssert.assertUtilityClass(Csv.class);
+    }
+
     @Test
     public void testColumns() throws Exception {
         File tmp = File.createTempFile("test",".csv");

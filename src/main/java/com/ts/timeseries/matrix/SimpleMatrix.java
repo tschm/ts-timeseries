@@ -58,7 +58,7 @@ final class SimpleMatrix implements Matrix {
     @Override
     public SortedMap<String, Double> readVector(Long time) {
         Preconditions.checkArgument(this.data.containsKey(time), "Unknown timestamp: " + time);
-        SortedMap<String, Double> x = new TreeMap<String, Double>();
+        SortedMap<String, Double> x = new TreeMap<>();
         SimpleRow row = this.data.get(time);
 
         for (String symbol : this.columnNames.keySet())
@@ -69,7 +69,7 @@ final class SimpleMatrix implements Matrix {
 
     @Override
     public void writeVector(Long time, Map<String, Double> data) {
-        //Preconditions.checkArgument(this.data.containsKey(time), "Unknown timestamp: " + time);
+
         SimpleRow row = this.data.get(time);
 
         if (row == null)
@@ -122,7 +122,7 @@ final class SimpleMatrix implements Matrix {
             try {
                 writer.writeSeries(group, name, this.getTimeSeries(name));
             } catch (HDF5JavaException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
 
         writer.close();

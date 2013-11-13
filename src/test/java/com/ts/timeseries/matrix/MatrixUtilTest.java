@@ -2,11 +2,16 @@ package com.ts.timeseries.matrix;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.ts.timeseries.unit.LangAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MatrixUtilTest {
 
+    @Test
+    public void testConstructor() throws Exception {
+        LangAssert.assertUtilityClass(MatrixUtil.class);
+    }
 
     @Test
     public void testRowSum() throws Exception {

@@ -17,7 +17,7 @@ import java.util.Set;
 public final class CsvInputData implements InputData {
 
     private final Map<String, List<String>> columns;
-    private final List<Long> time = new ArrayList<Long>();
+    private final List<Long> time = new ArrayList<>();
 
     public static final String DATE_CSV_FORMAT = "data.series.csv.format";
     public static final String DATA_CSV = "data.series.csv";
@@ -35,7 +35,7 @@ public final class CsvInputData implements InputData {
 
     @Override
     public TimeSeries timeSeries(String name) {
-        List<Double> data = new ArrayList<Double>();
+        List<Double> data = new ArrayList<>();
         for (String x : columns.get(name))
         {
             data.add(Double.valueOf(x));

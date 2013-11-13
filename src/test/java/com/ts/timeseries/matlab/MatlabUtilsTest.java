@@ -1,11 +1,17 @@
 package com.ts.timeseries.matlab;
 
+import com.ts.timeseries.unit.LangAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 public class MatlabUtilsTest {
+
+    @Test
+    public void testConstructor() throws Exception {
+        LangAssert.assertUtilityClass(MatlabUtils.class);
+    }
 
     @Test
     public void testGetDateArray() throws Exception {

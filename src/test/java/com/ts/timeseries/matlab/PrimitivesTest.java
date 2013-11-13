@@ -1,12 +1,18 @@
 package com.ts.timeseries.matlab;
 
 import com.google.common.collect.ImmutableList;
+import com.ts.timeseries.unit.LangAssert;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
 public class PrimitivesTest {
+
+    @Test
+    public void testConstructor() throws Exception {
+        LangAssert.assertUtilityClass(Primitives.class);
+    }
 
     @Test
     public void testConvertDouble() throws Exception {

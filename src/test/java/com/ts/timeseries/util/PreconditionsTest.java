@@ -1,8 +1,14 @@
 package com.ts.timeseries.util;
 
+import com.ts.timeseries.unit.LangAssert;
 import org.junit.Test;
 
 public class PreconditionsTest {
+
+    @Test
+    public void testConstructor() throws Exception {
+        LangAssert.assertUtilityClass(Preconditions.class);
+    }
 
     @Test
     public void testCheckArgument() throws Exception {

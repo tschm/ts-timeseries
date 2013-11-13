@@ -2,7 +2,6 @@ package com.ts.timeseries.hdf;
 
 import com.ts.timeseries.data.InputData;
 import com.ts.timeseries.data.TimeSeries;
-import com.ts.timeseries.hdf.DataReader;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 
 import java.io.File;
