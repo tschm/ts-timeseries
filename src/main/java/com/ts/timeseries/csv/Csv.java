@@ -15,7 +15,7 @@ public final class Csv {
         final BufferedReader reader = new BufferedReader(new FileReader(file));
         try
         {
-            List<List<String>> values = new ArrayList<List<String>>();
+            List<List<String>> values = new ArrayList<>();
 
             String thisLine;
             while ((thisLine = reader.readLine()) != null)
@@ -34,12 +34,12 @@ public final class Csv {
     {
         List<List<String>> values = read(file);
 
-        Map<String, List<String>> columns = new HashMap<String, List<String>>();
+        Map<String, List<String>> columns = new HashMap<>();
         if (values.size() > 0)
         {
             for (int column = 0; column < values.get(0).size(); column++)
             {
-                List<String> data = new ArrayList<String>();
+                List<String> data = new ArrayList<>();
                 for (List<String> value : values)
                     data.add(value.get(column));
 
@@ -55,10 +55,10 @@ public final class Csv {
 
         List<String> keys = values.get(0);
 
-        List<Map<String, String>> xx = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> xx = new ArrayList<>();
         for (int row = 1; row < values.size(); ++row)
         {
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<>();
             int column = 0;
             for (String key : keys)
             {
@@ -89,9 +89,9 @@ public final class Csv {
 
     public static void writeColumns(Map<String, List<String>> data, File file) throws IOException
     {
-        List<List<String>> x = new ArrayList<List<String>>();
+        List<List<String>> x = new ArrayList<>();
 
-        List<String> keys = new ArrayList<String>();
+        List<String> keys = new ArrayList<>();
         for (String key : data.keySet())
             keys.add(key);
 
@@ -100,7 +100,7 @@ public final class Csv {
         int n = data.get(keys.get(0)).size();
         for (int row = 0; row < n; ++row)
         {
-            List<String> w = new ArrayList<String>();
+            List<String> w = new ArrayList<>();
 
             for (String key : keys)
                 w.add(data.get(key).get(row));
@@ -112,9 +112,9 @@ public final class Csv {
 
     public static void writeRows(List<Map<String, String>> data, File file) throws IOException
     {
-        List<List<String>> x = new ArrayList<List<String>>();
+        List<List<String>> x = new ArrayList<>();
 
-        List<String> keys = new ArrayList<String>();
+        List<String> keys = new ArrayList<>();
         for (String key : data.get(0).keySet())
             keys.add(key);
 

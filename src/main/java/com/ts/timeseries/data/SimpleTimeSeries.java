@@ -8,14 +8,14 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 public final class SimpleTimeSeries implements TimeSeries {
-    private SortedMap<Long, Double> series = new TreeMap<Long, Double>();
+    private SortedMap<Long, Double> series = new TreeMap<>();
 
     public SimpleTimeSeries(Map<Long, Double> data) {
         this.series.putAll(data);
     }
 
     public SimpleTimeSeries(List<Long> dates, List<Double> values) {
-        SortedMap<Long, Double> mapTimeSeries = new TreeMap<Long, Double>();
+        SortedMap<Long, Double> mapTimeSeries = new TreeMap<>();
         for (int i = 0; i < values.size(); ++i)
         {
             mapTimeSeries.put(dates.get(i), values.get(i));

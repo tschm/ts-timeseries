@@ -21,7 +21,7 @@ public final class MatrixUtil {
 
     private static List<Double> noNaNSubset(Collection<Double> x)
     {
-        List<Double> list = new ArrayList<Double>();
+        List<Double> list = new ArrayList<>();
         for (Double a : x)
             if (!(Double.isNaN(a)))
                 list.add(a);
@@ -31,7 +31,7 @@ public final class MatrixUtil {
 
     public static TimeSeries rowSum(Matrix A)
     {
-        final Map<Long, Double> rowSum = new HashMap<Long, Double>();
+        final Map<Long, Double> rowSum = new HashMap<>();
 
         for (Long time : A.timegrid())
         {

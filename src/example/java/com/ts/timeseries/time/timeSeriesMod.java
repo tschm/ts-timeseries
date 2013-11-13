@@ -10,7 +10,7 @@ public class timeSeriesMod {
     public static void main(String[] args)
     {
         Random x = new Random();
-        HashMap<Long, Double> ts = new HashMap<Long, Double>();
+        HashMap<Long, Double> ts = new HashMap<>();
 
         for (long l = 1000; l < 1000000; l=l+1000)
             ts.put(l, x.nextGaussian());

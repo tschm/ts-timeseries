@@ -17,7 +17,7 @@ public final class MatlabTimeSeries implements TimeSeries, MatlabData {
     /**
      * Constructor using existing time series
      *
-     * @param timeSeries
+     * @param timeSeries timeSeries
      */
     public MatlabTimeSeries(TimeSeries timeSeries) {
         this.timeSeries = timeSeries;
@@ -33,7 +33,7 @@ public final class MatlabTimeSeries implements TimeSeries, MatlabData {
         if (!(time.length==data.length))
             throw new IllegalArgumentException("Data and Time mismatch in length");
 
-        final SortedMap<Long,Double> map = new TreeMap<Long,Double>();
+        final SortedMap<Long,Double> map = new TreeMap<>();
 
         for (int i = 0; i < time.length; ++i) {
             map.put(MatlabUtils.getDateStamp(time[i]), data[i]);
@@ -64,9 +64,8 @@ public final class MatlabTimeSeries implements TimeSeries, MatlabData {
 
         MatlabTimeSeries that = (MatlabTimeSeries) o;
 
-        if (timeSeries != null ? !timeSeries.equals(that.timeSeries) : that.timeSeries != null) return false;
+        return !(timeSeries != null ? !timeSeries.equals(that.timeSeries) : that.timeSeries != null);
 
-        return true;
     }
 
     @Override

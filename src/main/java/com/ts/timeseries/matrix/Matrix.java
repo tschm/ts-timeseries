@@ -64,9 +64,10 @@ public interface Matrix {
     SortedSet<Long> timegrid();
 
     /**
-     * writeColumns matrix to hdf file, use "data" as a group
+     * writeColumns matrix to hdf file
      *
      * @param file file
+     * @param group group
      */
-    void to_hdf(File file);
+    void to_hdf(File file, String group);
 }

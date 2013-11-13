@@ -13,6 +13,6 @@ public final class Datatypes {
     }
 
     public static List<String> getStringList() {
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 }

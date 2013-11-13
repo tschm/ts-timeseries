@@ -5,12 +5,8 @@ import com.ts.timeseries.data.TimeSeries;
 import com.ts.timeseries.hdf.DataWriter;
 import com.ts.timeseries.util.Preconditions;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 
@@ -25,8 +21,8 @@ final class SimpleMatrix implements Matrix {
             data.put(time, new SimpleRow(this.columnNames.size()));
     }
 
-    private final SortedMap<Long, SimpleRow> data = new TreeMap<Long, SimpleRow>();
-    private final Map<String, Integer> columnNames = new HashMap<String, Integer>();
+    private final SortedMap<Long, SimpleRow> data = new TreeMap<>();
+    private final Map<String, Integer> columnNames = new HashMap<>();
 
     SimpleMatrix(Set<String> symbols) {
         int col = 0;
@@ -104,7 +100,7 @@ final class SimpleMatrix implements Matrix {
     public TimeSeries getTimeSeries(String columnName) {
         Preconditions.checkArgument(this.columnNames.keySet().contains(columnName), "Unknown column: " + columnName);
         final int index = this.columnNames.get(columnName);
-        final SortedMap<Long, Double> data = new TreeMap<Long, Double>();
+        final SortedMap<Long, Double> data = new TreeMap<>();
 
         for (Map.Entry<Long, SimpleRow> entry : this.data.entrySet()) {
             data.put(entry.getKey(), entry.getValue().values[index]);
@@ -115,16 +111,16 @@ final class SimpleMatrix implements Matrix {
 
     @Override
     public SortedSet<Long> timegrid() {
-        return new TreeSet<Long>(data.keySet());
+        return new TreeSet<>(data.keySet());
     }
 
     @Override
-    public void to_hdf(File file) {
+    public void to_hdf(File file, String group) {
         DataWriter writer = new DataWriter(file);
         writer.createGroup("data");
         for (String name : this.columnNames.keySet())
             try {
-                writer.writeSeries("data", name, this.getTimeSeries(name));
+                writer.writeSeries(group, name, this.getTimeSeries(name));
             } catch (HDF5JavaException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
@@ -152,8 +148,8 @@ final class SimpleMatrix implements Matrix {
 
     @Override
     public int hashCode() {
-        int result = data != null ? data.hashCode() : 0;
-        result = 31 * result + (columnNames != null ? columnNames.hashCode() : 0);
+        int result = data.hashCode();
+        result = 31 * result + (columnNames.hashCode());
         return result;
     }
 

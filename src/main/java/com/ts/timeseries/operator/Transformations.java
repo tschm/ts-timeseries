@@ -20,7 +20,7 @@ public class Transformations {
         double weights = 0;
         double lambda = 1.0 - 1.0/n;
         double sum = 0;
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         for (Long t: r.points().keySet())
         {
             weights = 1 + weights * lambda;
@@ -35,7 +35,7 @@ public class Transformations {
         TimeSeries r = dropna(ts);
         TimeSeries mean = ewma(ts, n);
 
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         for (Long t: r.points().keySet())
         {
             double diff = r.points().get(t) - mean.points().get(t);
@@ -47,7 +47,7 @@ public class Transformations {
 
     public static TimeSeries dropna(TimeSeries ts)
     {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         for (Long t : ts.points().keySet())
         {
             Double z = ts.points().get(t);
@@ -61,7 +61,7 @@ public class Transformations {
 
     public static TimeSeries cumsum(TimeSeries ts)
     {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         double sum = 0;
         TimeSeries r = dropna(ts);
         for (Long t : r.points().keySet())
@@ -75,7 +75,7 @@ public class Transformations {
 
     public static TimeSeries sqrt(TimeSeries ts)
     {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         TimeSeries r = dropna(ts);
 
         for (Long t : r.points().keySet())
@@ -87,7 +87,7 @@ public class Transformations {
     }
 
     public static TimeSeries abs(TimeSeries ts) {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         TimeSeries r = dropna(ts);
 
         for (Long t : r.points().keySet())
@@ -99,7 +99,7 @@ public class Transformations {
     }
 
     public static TimeSeries pow(TimeSeries ts, double exponent) {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         TimeSeries r = dropna(ts);
 
         for (Long t : r.points().keySet())
@@ -128,7 +128,7 @@ public class Transformations {
     }
 
     public static TimeSeries centre(TimeSeries ts) {
-        Map<Long, Double> x = new HashMap<Long, Double>();
+        Map<Long, Double> x = new HashMap<>();
         TimeSeries r = dropna(ts);
         double mean = mean(r);
 

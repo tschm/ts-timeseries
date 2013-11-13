@@ -24,7 +24,7 @@ public final class MatrixBuilder {
      * @return DataControl
      */
     public static Matrix build(Collection<String> assets, SortedSet<Long> grid) {
-        SortedSet<String> columns = new TreeSet<String>();
+        SortedSet<String> columns = new TreeSet<>();
         columns.addAll(assets);
         return new SimpleMatrix(grid, columns);
     }

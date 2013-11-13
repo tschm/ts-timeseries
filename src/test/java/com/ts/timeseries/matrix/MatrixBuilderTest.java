@@ -44,7 +44,7 @@ public class MatrixBuilderTest {
     public void testHDFExport() throws IOException, ParseException, HDF5JavaException {
         File tmp = File.createTempFile("test78", ".h5");
         tmp.deleteOnExit();
-        A.to_hdf(tmp);
+        A.to_hdf(tmp, "data");
 
         Matrix B = MatrixBuilder.importHdfMatrix(tmp, "data");
         Assert.assertEquals(A,B);
