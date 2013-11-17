@@ -2,7 +2,6 @@ package com.ts.timeseries.hdf;
 
 import com.ts.timeseries.data.InputData;
 import com.ts.timeseries.data.TimeSeries;
-import com.ts.timeseries.hdf.HdfInputData;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,5 +16,11 @@ public class hdfInputDataTest {
         Assert.assertEquals(data.names().size(), 57);
         TimeSeries ts = data.timeSeries("FTSE-price adjusted");
         Assert.assertEquals(ts.points().size(), 2263);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTimeSeriesWrongName() throws Exception {
+        InputData data = new HdfInputData(new File(testDir, "matrix.h5"), "data");
+        TimeSeries ts = data.timeSeries("PeterMaffay");
     }
 }

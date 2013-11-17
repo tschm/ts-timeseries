@@ -30,4 +30,10 @@ public class CsvInputDataTest {
         TimeSeries ts = data.timeSeries("FTSE-price adjusted");
         Assert.assertEquals(ts.points().size(), 2263);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTimeSeriesWrongName() throws Exception {
+        InputData data = new CsvInputData(new File(testDir, "matrix.csv"), "yyyyMMddHHmmss");
+        TimeSeries ts = data.timeSeries("Peter Maffay");
+    }
 }

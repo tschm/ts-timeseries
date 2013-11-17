@@ -2,6 +2,7 @@ package com.ts.timeseries.hdf;
 
 import com.ts.timeseries.data.InputData;
 import com.ts.timeseries.data.TimeSeries;
+import com.ts.timeseries.util.Preconditions;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 
 import java.io.File;
@@ -25,6 +26,7 @@ public final class HdfInputData implements InputData {
 
     @Override
     public TimeSeries timeSeries(String name) {
+        Preconditions.checkArgument(this.names().contains(name), "unknown time series " + name);
         try {
             return reader.readSeries(group + "/" + name);
         } catch (HDF5JavaException e) {

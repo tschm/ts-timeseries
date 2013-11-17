@@ -3,6 +3,7 @@ package com.ts.timeseries.csv;
 import com.ts.timeseries.data.InputData;
 import com.ts.timeseries.data.SimpleTimeSeries;
 import com.ts.timeseries.data.TimeSeries;
+import com.ts.timeseries.util.Preconditions;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -36,6 +37,7 @@ public final class CsvInputData implements InputData {
     @Override
     public TimeSeries timeSeries(String name) {
         List<Double> data = new ArrayList<>();
+        Preconditions.checkArgument(columns.containsKey(name), "unknown time series " + name);
         for (String x : columns.get(name))
         {
             data.add(Double.valueOf(x));

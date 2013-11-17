@@ -22,6 +22,7 @@ public class CsvTest {
     @Test
     public void testColumns() throws Exception {
         File tmp = File.createTempFile("test",".csv");
+        tmp.deleteOnExit();
 
         Map<String, List<String>> data = new HashMap<String, List<String>>();
         data.put("A",ImmutableList.of("1","2","3"));
@@ -30,12 +31,12 @@ public class CsvTest {
         Csv.writeColumns(data, tmp);
 
         Assert.assertEquals(Csv.readColumns(tmp), data);
-        tmp.delete();
     }
 
     @Test
     public void testRows() throws Exception {
         File tmp = File.createTempFile("test",".csv");
+        tmp.deleteOnExit();
 
         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
         data.add(ImmutableMap.of("A","1","B","2","C","3"));
@@ -44,6 +45,5 @@ public class CsvTest {
         Csv.writeRows(data, tmp);
 
         Assert.assertEquals(Csv.readRows(tmp), data);
-        tmp.delete();
     }
 }
