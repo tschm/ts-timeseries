@@ -1,6 +1,7 @@
 package com.ts.timeseries.grid;
 
 import com.google.common.collect.ImmutableBiMap;
+import com.ts.timeseries.util.Preconditions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,9 +30,7 @@ final class Duration {
                 }
             }
 
-            if (unit == null) {
-                throw new IllegalArgumentException("Wrong format, should be number + any of " + identifiers.keySet());
-            }
+            Preconditions.checkNotNull(unit, "Wrong format, should be number + any of " + identifiers.keySet());
 
             timeUnit = unit;
             value = val;
