@@ -3,6 +3,7 @@ package com.ts.timeseries.matlab;
 
 import com.ts.timeseries.data.SimpleTimeSeries;
 import com.ts.timeseries.data.TimeSeries;
+import com.ts.timeseries.util.Preconditions;
 
 import java.util.Arrays;
 import java.util.SortedMap;
@@ -30,8 +31,7 @@ public final class MatlabTimeSeries implements TimeSeries, MatlabData {
      * @param data data vector
      */
     public MatlabTimeSeries(double[][] time, double[] data) {
-        if (!(time.length==data.length))
-            throw new IllegalArgumentException("Data and Time mismatch in length");
+        Preconditions.checkArgument(time.length == data.length, "Data and Time mismatch in length" );
 
         final SortedMap<Long,Double> map = new TreeMap<>();
 

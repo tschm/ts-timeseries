@@ -25,6 +25,7 @@ public class MatlabTimeSeriesTest {
         MatlabTimeSeries x2 = new MatlabTimeSeries(new MatlabTimeSeries(x).getTimeMatrix(), new MatlabTimeSeries(x).getData());
         System.out.println(x2);
         Assert.assertEquals(new MatlabTimeSeries(x),x2);
+        Assert.assertEquals(x2.hashCode(), x2.points().hashCode());
 
     }
 }

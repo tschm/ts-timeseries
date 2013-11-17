@@ -47,12 +47,12 @@ public final class SimpleTimeSeries implements TimeSeries {
 
         SimpleTimeSeries that = (SimpleTimeSeries) o;
 
-        return !(series != null ? !series.equals(that.series) : that.series != null);
+        return series.equals(that.series);
 
     }
 
     @Override
     public int hashCode() {
-        return series != null ? series.hashCode() : 0;
+        return series.hashCode();
     }
 }
