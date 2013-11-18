@@ -1,6 +1,7 @@
 package com.ts.timeseries.matrix;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
 import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import org.junit.Assert;
@@ -55,5 +56,11 @@ public class MatrixBuilderTest {
     public void testBuild() throws Exception {
         Assert.assertEquals(A.columns(), ImmutableSortedSet.of("Maffay", "Peter"));
         Assert.assertEquals(A.timegrid(), ImmutableSortedSet.of(0L,1L,3L,5L));
+    }
+
+    @Test
+    public void testWrite() throws Exception {
+        Matrix mat = MatrixBuilder.build(ImmutableList.of("A", "B"), ImmutableSortedSet.of(10L, 20L));
+        mat.writeVector(15L, ImmutableMap.of("A",2.0,"B",3.0));
     }
 }
