@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<project name="ts-timeseries" default="main" basedir=".">
+
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="src.dir" value="${basedir}/src/main/java"/>
+    <property name="test.dir" value="${basedir}/src/test/java"/>
+    <property name="docs.dir" value="${basedir}/docs"/>
+
+    <!-- Variables used for JUnit testin -->
+    <property name="libtest.dir" value="${basedir}/libtest"/>
+    <property name="test.report.dir" location="${basedir}/testreport" />
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir" value="${basedir}/jar"/>
+    <property name="build.test.dir" value="${build.dir}/tests"/>
+
+
+   <!--  <property name="main-class" value="com.lwm.Engine"/> -->
+    <property name="app" value="${jar.dir}/${ant.project.name}.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+
+    <!--<path id="application" location="${app}"/>-->
+
+    <!-- Define the classpath which includes the junit.jar and the classes after compiling-->
+    <path id="junit.class.path">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <pathelement location="${classes.dir}" />
+    </path>
+
+    <target name="clean" description="cleanup all">
+        <delete dir="${build.dir}"/>
+        <delete dir="${test.report.dir}" />
+        <delete dir="${jar.dir}" />
+    </target>
+
+    <!-- Creates the  build, docs and dist directory-->
+    <target name="makedir">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${build.test.dir}" />
+        <mkdir dir="${jar.dir}" />
+        <mkdir dir="${docs.dir}" />
+        <mkdir dir="${test.report.dir}" />
+    </target>
+
+    <target name="compile" depends="clean, makedir" description="build all modules">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
+        <copy todir="${classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+
+        <javac srcdir="${test.dir}" destdir="${build.test.dir}" classpathref="junit.class.path" includeantruntime="false"/>
+    </target>
+
+    <!-- Creates Javadoc -->
+    <target name="docs" depends="test">
+        <javadoc packagenames="com.lwm" sourcepath="${src.dir}" destdir="${docs.dir}">
+            <!-- Define which files / directory should get included, we include all -->
+            <fileset dir="${src.dir}">
+                <include name="**/*.java" />
+            </fileset>
+        </javadoc>
+    </target>
+
+
+    <target name="jar" depends="test">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${app}">
+            <zipfileset dir="${classes.dir}"/>
+            <zipfileset src="${lib.dir}/guava-16.0.1.jar"/>
+            <zipfileset src="${lib.dir}/joda-time-2.3.jar"/>
+			<zipfileset src="${lib.dir}/jhdf5-13.0.6.jar"/>
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+        </jar>
+    </target>
+
+
+    <!-- Run the JUnit Tests -->
+    <!-- Output is XML, could also be plain-->
+    <target name="test" depends="compile">
+        <junit printsummary="on" fork="true" haltonfailure="yes">
+            <classpath refid="junit.class.path" />
+            <classpath>
+                <pathelement location="${build.test.dir}"/>
+            </classpath>
+            <formatter type="plain" />
+            <batchtest todir="${test.report.dir}">
+                <fileset dir="${test.dir}">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+
+    <target name="main" depends="jar">
+        <description>Main target</description>
+    </target>
+
+    <!--<target name="deploy" depends="jar">-->
+        <!--<copy file="${app}" todir = "\\PCW8007\Users\bloomberg\Documents\data"/>-->
+    <!--</target>-->
+
+</project>
+
+
+
+
