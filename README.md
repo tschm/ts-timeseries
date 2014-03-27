@@ -115,8 +115,6 @@ public interface Matrix {
 ## Operators
 We provide various functions to map and analyze time series data and matrices.
 
-## Availability
-This package is available in the Maven repository of the author.
 
 
    
