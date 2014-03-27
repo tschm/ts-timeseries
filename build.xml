@@ -14,7 +14,6 @@
     <property name="jar.dir" value="${basedir}/jar"/>
     <property name="build.test.dir" value="${build.dir}/tests"/>
 
-
    <!--  <property name="main-class" value="com.lwm.Engine"/> -->
     <property name="app" value="${jar.dir}/${ant.project.name}.jar"/>
 
@@ -65,7 +64,6 @@
         </javadoc>
     </target>
 
-
     <target name="jar" depends="test">
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${app}">
@@ -76,7 +74,6 @@
             <fileset dir="${src.dir}" includes="**/*.java"/>
         </jar>
     </target>
-
 
     <!-- Run the JUnit Tests -->
     <!-- Output is XML, could also be plain-->
@@ -95,14 +92,9 @@
         </junit>
     </target>
 
-
     <target name="main" depends="jar">
         <description>Main target</description>
     </target>
-
-    <!--<target name="deploy" depends="jar">-->
-        <!--<copy file="${app}" todir = "\\PCW8007\Users\bloomberg\Documents\data"/>-->
-    <!--</target>-->
 
 </project>
 
