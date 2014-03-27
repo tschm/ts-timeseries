@@ -10,3 +10,8 @@ target
 # Package Files #
 *.war
 *.ear
+out
+build
+docs
+jar
+testreport
