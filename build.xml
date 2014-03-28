@@ -56,7 +56,7 @@
 
     <!-- Creates Javadoc -->
     <target name="docs" depends="test">
-        <javadoc packagenames="com.lwm" sourcepath="${src.dir}" destdir="${docs.dir}">
+        <javadoc packagenames="com.ts.timeseries" sourcepath="${src.dir}" destdir="${docs.dir}">
             <!-- Define which files / directory should get included, we include all -->
             <fileset dir="${src.dir}">
                 <include name="**/*.java" />

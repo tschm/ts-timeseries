@@ -117,7 +117,7 @@ final class SimpleMatrix implements Matrix {
     @Override
     public void to_hdf(File file, String group) {
         DataWriter writer = new DataWriter(file);
-        writer.createGroup("data");
+        writer.createGroup(group);
         for (String name : this.columnNames.keySet())
             try {
                 writer.writeSeries(group, name, this.getTimeSeries(name));
