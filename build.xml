@@ -70,7 +70,6 @@
             <zipfileset dir="${classes.dir}"/>
             <zipfileset src="${lib.dir}/guava-16.0.1.jar"/>
             <zipfileset src="${lib.dir}/joda-time-2.3.jar"/>
-			<zipfileset src="${lib.dir}/jhdf5-13.0.6.jar"/>
             <fileset dir="${src.dir}" includes="**/*.java"/>
         </jar>
     </target>

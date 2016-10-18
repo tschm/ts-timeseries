@@ -2,9 +2,7 @@ package com.ts.timeseries.matrix;
 
 import com.ts.timeseries.data.SimpleTimeSeries;
 import com.ts.timeseries.data.TimeSeries;
-import com.ts.timeseries.hdf.DataWriter;
 import com.ts.timeseries.util.Preconditions;
-import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 
 import java.io.File;
 import java.util.*;
@@ -112,20 +110,6 @@ final class SimpleMatrix implements Matrix {
     @Override
     public SortedSet<Long> timegrid() {
         return new TreeSet<>(data.keySet());
-    }
-
-    @Override
-    public void to_hdf(File file, String group) {
-        DataWriter writer = new DataWriter(file);
-        writer.createGroup(group);
-        for (String name : this.columnNames.keySet())
-            try {
-                writer.writeSeries(group, name, this.getTimeSeries(name));
-            } catch (HDF5JavaException e) {
-                e.printStackTrace();
-            }
-
-        writer.close();
     }
 
 

@@ -3,7 +3,6 @@ package com.ts.timeseries.matrix;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
-import ncsa.hdf.hdf5lib.exceptions.HDF5JavaException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,16 +38,6 @@ public class MatrixBuilderTest {
     public void testMatrix() {
         Assert.assertEquals(A.getTimeSeries("Peter").points().keySet().size(), 4);
         Assert.assertEquals(A.getTimeSeries("Maffay").points().keySet().size(), 4);
-    }
-
-    @Test
-    public void testHDFExport() throws IOException, ParseException, HDF5JavaException {
-        File tmp = File.createTempFile("test78", ".h5");
-        tmp.deleteOnExit();
-        A.to_hdf(tmp, "data");
-
-        Matrix B = MatrixBuilder.importHdfMatrix(tmp, "data");
-        Assert.assertEquals(A,B);
     }
 
 
